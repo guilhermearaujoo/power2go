@@ -1,0 +1,21 @@
+@import "../../../styles/colors.scss";
+
+.accordion {
+  align-items: center;
+  background: $white;
+  border-radius: 16px;
+  border: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .header {
+    align-items: center;
+    align-self: stretch;
+    border-bottom: 1px solid $border-color;
+    border-radius: 16px 16px 0px 0px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 16px 24px;
+  }
+}

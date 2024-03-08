@@ -1,5 +1,6 @@
 import React from 'react'
 import Styles from './table-styles.scss'
+import { HiBan } from 'react-icons/hi'
 
 interface TableProps {
   headers: string[]
@@ -7,7 +8,14 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ headers, values }) => {
-  return (
+  return values.length === 0
+    ? (
+    <div className={Styles.emptyTable}>
+      <HiBan height={30} width={30}/>
+      <span>Nenhum resultado encontrado</span>
+    </div>
+      )
+    : (
     <table className={Styles.table}>
       <thead>
         <tr>
@@ -26,7 +34,7 @@ const Table: React.FC<TableProps> = ({ headers, values }) => {
         ))}
       </tbody>
     </table>
-  )
+      )
 }
 
 export default Table

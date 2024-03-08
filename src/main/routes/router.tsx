@@ -1,14 +1,17 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Home } from '@/presentation/pages'
+import { makeHome } from '@/main/factories/pages'
+import ContextProvider from '@/main/factories/context/context'
 
 const Router: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={Home} />
-      </Switch>
-    </BrowserRouter>
+    <ContextProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={makeHome} />
+        </Switch>
+      </BrowserRouter>
+    </ContextProvider>
   )
 }
 

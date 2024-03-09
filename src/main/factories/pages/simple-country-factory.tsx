@@ -4,5 +4,5 @@ import { makeRemoteLoadCountry } from '@/main/factories/usecases'
 import React from 'react'
 
 export const makeSimpleCountry: React.FC = () => {
-  return <SimpleCountry loadCountry={makeRemoteLoadCountry('brasil')} />
+  return <SimpleCountry loadCountry={makeRemoteLoadCountry()} />
 }

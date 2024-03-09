@@ -9,21 +9,23 @@ export class RemoteLoadCountry implements LoadCountry {
     private readonly httpClient: HttpClient<RemoteLoadCountry.Model[]>
   ) {}
 
-  async load (): Promise<LoadCountry.Model> {
+  async load (country: string): Promise<LoadCountry.Model> {
     const httpResponse = await this.httpClient.request({
-      url: this.url,
+      url: this.url.replace('country', country),
       method: 'get'
     })
 
-    const remoteCountry = httpResponse.body
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok: return {
-        name: remoteCountry.shift().name?.common,
-        capital: remoteCountry.shift().capital?.shift(),
-        language: Object.values(remoteCountry.shift().languages).shift(),
-        currency: Object.values(remoteCountry.shift().currencies).shift()?.name,
-        population: remoteCountry.shift()?.population,
-        flag: remoteCountry.shift()?.flags?.svg
+      case HttpStatusCode.ok: {
+        const remoteCountry = httpResponse.body.shift()
+        return {
+          name: remoteCountry.name?.common,
+          capital: remoteCountry.capital?.shift(),
+          language: Object.values(remoteCountry.languages).shift(),
+          currency: Object.values(remoteCountry.currencies).shift()?.name,
+          population: remoteCountry?.population,
+          flag: remoteCountry?.flags?.svg
+        }
       }
       default: throw new UnexpectedError()
     }

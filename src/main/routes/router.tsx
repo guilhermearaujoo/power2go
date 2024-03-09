@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { makeHome } from '@/main/factories/pages'
+import { makeHome, makeSimpleCountry } from '@/main/factories/pages'
 import ContextProvider from '@/main/factories/context/context'
 
 const Router: React.FC = () => {
@@ -8,6 +8,7 @@ const Router: React.FC = () => {
     <ContextProvider>
       <BrowserRouter>
         <Switch>
+          <Route path="/:country" component={makeSimpleCountry} />
           <Route path="/" component={makeHome} />
         </Switch>
       </BrowserRouter>

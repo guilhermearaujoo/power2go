@@ -26,8 +26,10 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
   )
 
   useEffect(() => {
-    setIsLoading(true)
-    loadCountryByName(pathname.split('/')[1])
+    setTimeout(() => {
+      setIsLoading(true)
+      loadCountryByName(pathname.split('/')[1])
+    }, 300)
   }, [])
 
   return (

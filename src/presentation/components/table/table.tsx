@@ -28,17 +28,17 @@ const Table: React.FC<TableProps> = ({ headers, values }) => {
         {values.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((value, colIndex) =>
-              colIndex === row.length - 1
-                ? (
-                <td key={colIndex}>
-                  <a href={value} target="_blank" rel="noreferrer">
-                    {value}
-                  </a>
-                </td>
-                  )
-                : (
+            // colIndex === row.length - 1
+            //   ? (
+            //   <td key={colIndex}>
+            //     <a href={value} target="_blank" rel="noreferrer">
+            //       {value}
+            //     </a>
+            //   </td>
+            //     )
+            //   : (
                 <td key={colIndex}>{value}</td>
-                  )
+              // )
             )}
           </tr>
         ))}

@@ -1,9 +1,10 @@
 import React from 'react'
 import Styles from './home-styles.scss'
+import { ConsultHistory } from './components'
 
 const Home: React.FC = () => {
   return <div className={Styles.home}>
-    <h1>Hello World</h1>
+    <ConsultHistory />
   </div>
 }
 

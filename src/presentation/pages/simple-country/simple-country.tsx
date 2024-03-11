@@ -1,9 +1,11 @@
-import React, { useEffect, useCallback } from 'react'
 import Styles from './simple-country-styles.scss'
-import { useLocation } from 'react-router-dom'
 import { LoadCountry } from '@/domain/usecases'
+import { CountryModel, ConsultHistoryModel } from '@/domain/models'
+import { Context } from '@/main/factories/context/context'
 import { Loading, Table, Accordion } from '@/presentation/components'
-import { CountryModel } from '@/domain/models'
+
+import React, { useEffect, useCallback, useContext } from 'react'
+import { useLocation } from 'react-router-dom'
 
 type Props = {
   loadCountry: LoadCountry
@@ -13,12 +15,32 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [country, setCountry] = React.useState<CountryModel>(null)
   const { pathname } = useLocation()
+  const { setConsultHistory, consultHistory } = useContext(Context)
+
+  const addCountryToConsultHistory = (country: CountryModel): void => {
+    if (!country) {
+      return
+    }
+
+    const uniqueHistory = consultHistory().filter(
+      (history: ConsultHistoryModel) => history.country !== country.name
+    )
+    uniqueHistory.push({
+      date: new Date().toLocaleDateString(),
+      country: country?.name,
+      link: `/${country?.name.toLowerCase().split(' ').join('%20')}`
+    })
+    setConsultHistory(uniqueHistory)
+  }
 
   const loadCountryByName = useCallback(
     (country) => {
       loadCountry
         .load(country)
-        .then((countryData) => setCountry(countryData))
+        .then((countryData) => {
+          setCountry(countryData)
+          addCountryToConsultHistory(countryData)
+        })
         .catch(console.error)
         .finally(() => setIsLoading(false))
     },

@@ -16,16 +16,16 @@ const SearchCountry: React.FC = () => {
   }
 
   return (
-      <form onSubmit={onSubmit} className={Styles.searchCountry}>
-        <Input
-            type="text"
-            name="search"
-            state={search}
-            setState={setSearch}
-            placeholder="Search for a country"
-        />
-        <button type='submit'>Search</button>
-      </form>
+    <form onSubmit={onSubmit} className={Styles.searchCountry}>
+      <Input
+        type="text"
+        name="search"
+        state={search}
+        setState={setSearch}
+        placeholder="Search for a country"
+      />
+      <button type="submit">Search</button>
+    </form>
   )
 }
 

@@ -16,7 +16,7 @@ const ConsultHistory: React.FC = () => {
           <a href={consult?.link} key={index}>
             {consult?.link}
           </a>
-        ])}
+        ]).reverse()}
       />
     </Accordion>
   )

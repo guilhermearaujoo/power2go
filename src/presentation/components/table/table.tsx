@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Styles from './table-styles.scss'
 import { HiBan } from 'react-icons/hi'
 
@@ -47,4 +47,4 @@ const Table: React.FC<TableProps> = ({ headers, values }) => {
       )
 }
 
-export default Table
+export default memo(Table)

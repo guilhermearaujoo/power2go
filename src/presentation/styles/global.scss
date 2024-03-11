@@ -1,4 +1,4 @@
-@import './colors.scss';
+@import "./colors.scss";
 
 * {
   box-sizing: border-box;
@@ -10,10 +10,20 @@
 
 body {
   background-color: $page-background;
-
 }
 
 h2 {
   font-size: 16px;
   font-weight: 700;
+}
+
+button {
+  padding: 16px;
+  border-radius: 8px;
+  background: $dark-blue;
+  border: 2px solid $dark-blue;
+  color: $white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
 }

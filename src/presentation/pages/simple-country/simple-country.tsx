@@ -42,7 +42,7 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
                 country.name,
                 country.capital,
                 country.currency,
-                country.population,
+                country.language,
                 country.population
               ]
             ]}

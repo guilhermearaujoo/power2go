@@ -10,7 +10,13 @@ const ConsultHistory: React.FC = () => {
     <Accordion title="Histórico de consultas">
       <Table
         headers={['Data', 'País', 'Link']}
-        values={consultHistory().map((consult: ConsultHistoryModel) => [consult?.date, consult?.country, consult?.link])}
+        values={consultHistory().map((consult: ConsultHistoryModel, index: number) => [
+          consult?.date,
+          consult?.country,
+          <a href={consult?.link} key={index}>
+            {consult?.link}
+          </a>
+        ])}
       />
     </Accordion>
   )

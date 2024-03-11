@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Styles from './accordion-styles.scss'
 
-interface TableProps {
+interface AccordionProps {
   children: React.ReactNode
   title: string
 }
 
-const Table: React.FC<TableProps> = ({ children, title }) => {
+const Accordion: React.FC<AccordionProps> = ({ children, title }) => {
   return (
     <div className={Styles.accordion}>
       {title && <div className={Styles.header}>{<h2>{title}</h2>}</div>}
@@ -15,4 +15,4 @@ const Table: React.FC<TableProps> = ({ children, title }) => {
   )
 }
 
-export default Table
+export default memo(Accordion)

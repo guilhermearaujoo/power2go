@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .simpleCountry {
-    background-color: red;
+    @include pageMixin;
 }

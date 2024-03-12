@@ -28,7 +28,7 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
     uniqueHistory.push({
       date: new Date().toLocaleDateString(),
       country: country?.name,
-      link: `/${country?.name.toLowerCase().split(' ').join('%20')}`
+      link: `http://localhost:8081/${country?.name.toLowerCase().split(' ').join('%20')}`
     })
     setConsultHistory(uniqueHistory)
   }

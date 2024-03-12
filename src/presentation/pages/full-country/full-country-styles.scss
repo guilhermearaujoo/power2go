@@ -1,0 +1,37 @@
+@import "../../styles/mixins.scss";
+
+.fullCountry {
+  @include pageMixin;
+}
+
+.fullCountryContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  gap: 30px;
+
+  img {
+    width: 50%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  }
+  .asideInformation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .informationWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}

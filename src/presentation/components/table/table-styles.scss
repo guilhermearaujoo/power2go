@@ -32,23 +32,3 @@
     }
 
 }
-
-.emptyTable {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    padding: 20px;
-    font-size: 20px;
-
-    span {
-        text-align: center;
-    }
-
-    svg {
-        font-size: 40px;
-        margin-bottom: 10px;
-        color: $dark-blue;
-    }
-}

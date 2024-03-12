@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 import Styles from './table-styles.scss'
-import { HiBan } from 'react-icons/hi'
-
+import { NotFound } from '@/presentation/components'
 interface TableProps {
   headers: string[]
   values: any[][]
@@ -10,12 +9,10 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ headers, values }) => {
   return values?.length === 0 || values[0]?.[0] === undefined
     ? (
-    <div className={Styles.emptyTable}>
-      <HiBan />
-      <span>Nenhum resultado encontrado</span>
-    </div>
+    <NotFound />
       )
-    : <table className={Styles.table}>
+    : (
+    <table className={Styles.table}>
       <thead>
         <tr>
           {headers.map((header, index) => (
@@ -26,13 +23,14 @@ const Table: React.FC<TableProps> = ({ headers, values }) => {
       <tbody>
         {values.map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {row?.map((value, colIndex) =>
-                <td key={colIndex}>{value}</td>
-            )}
+            {row?.map((value, colIndex) => (
+              <td key={colIndex}>{value}</td>
+            ))}
           </tr>
         ))}
       </tbody>
     </table>
+      )
 }
 
 export default memo(Table)

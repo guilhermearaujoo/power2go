@@ -24,7 +24,7 @@ const SearchCountry: React.FC = () => {
         setState={setSearch}
         placeholder="Search for a country"
       />
-      <button type="submit">Search</button>
+      <button type="submit">Search Country</button>
     </form>
   )
 }

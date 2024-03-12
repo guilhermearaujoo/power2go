@@ -1,20 +1,19 @@
-@import '../../styles/colors.scss';
+@import "../../styles/colors.scss";
 
 .searchCountry {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 40px;
-    width: 100%;
-    margin-top: 40px;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 100px;
+  width: 100%;
+  margin-top: 40px;
+  gap: 20px;
 
-    div {
-        width: 50%;
-    }
+  div {
+    width: 50%;
+  }
 
-    button {
-        min-width: 200px;
-    }
-
+  button {
+    min-width: 200px;
+  }
 }

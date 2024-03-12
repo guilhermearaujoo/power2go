@@ -15,7 +15,7 @@
     transition: transform 400ms ease;
   }
 
-  &:focus-within {
+  &:focus-within, &:hover {
 
     &::after {
       transform: scaleX(1);

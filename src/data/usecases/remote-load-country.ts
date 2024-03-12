@@ -20,11 +20,17 @@ export class RemoteLoadCountry implements LoadCountry {
         const remoteCountry = httpResponse.body.shift()
         return {
           name: remoteCountry.name?.common,
+          officialName: remoteCountry.name?.official,
+          nativeName: Object.values(remoteCountry.name?.nativeName).shift()?.common,
           capital: remoteCountry.capital?.shift(),
           language: Object.values(remoteCountry.languages).shift(),
           currency: Object.values(remoteCountry.currencies).shift()?.name,
           population: remoteCountry?.population,
-          flag: remoteCountry?.flags?.svg
+          flag: remoteCountry?.flags?.svg,
+          latlng: remoteCountry?.latlng,
+          area: remoteCountry?.area,
+          startOfWeek: remoteCountry?.startOfWeek,
+          continents: remoteCountry?.continents
         }
       }
       default: throw new UnexpectedError()

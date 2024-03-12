@@ -3,4 +3,4 @@ import { LoadCountry } from '@/domain/usecases'
 import { RemoteLoadCountry } from '@/data/usecases'
 
 export const makeRemoteLoadCountry = (): LoadCountry =>
-  new RemoteLoadCountry(makeApiUrl('/name/country?fields=name,capital,currencies,population,flags,languages'), makeAxiosHttpClient())
+  new RemoteLoadCountry(makeApiUrl('/name/country'), makeAxiosHttpClient())

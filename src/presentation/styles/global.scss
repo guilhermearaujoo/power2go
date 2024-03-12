@@ -18,6 +18,10 @@ h2 {
 }
 
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 16px;
   border-radius: 8px;
   background: $dark-blue;
@@ -26,4 +30,8 @@ button {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

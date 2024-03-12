@@ -10,7 +10,7 @@ const Router: React.FC = () => {
       <BrowserRouter>
         <SearchCountry />
         <Switch>
-          <Route path="/full/brasil" component={makeFullCountry}/>
+          <Route path="/full/:country" component={makeFullCountry}/>
           <Route path="/:country" component={makeSimpleCountry} />
           <Route path="/" component={makeHome} />
         </Switch>

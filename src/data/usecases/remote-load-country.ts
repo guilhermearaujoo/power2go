@@ -30,7 +30,8 @@ export class RemoteLoadCountry implements LoadCountry {
           latlng: remoteCountry?.latlng,
           area: remoteCountry?.area,
           startOfWeek: remoteCountry?.startOfWeek,
-          continents: remoteCountry?.continents
+          continents: remoteCountry?.continents,
+          borders: remoteCountry?.borders
         }
       }
       default: throw new UnexpectedError()

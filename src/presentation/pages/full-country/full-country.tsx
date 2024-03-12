@@ -2,7 +2,7 @@ import Styles from './full-country-styles.scss'
 import { LoadCountry } from '@/domain/usecases'
 import { CountryModel, ConsultHistoryModel } from '@/domain/models'
 import { Context } from '@/main/factories/context/context'
-import { Loading, Accordion } from '@/presentation/components'
+import { Loading, Accordion, NotFound } from '@/presentation/components'
 
 import React, { useEffect, useCallback, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -57,38 +57,60 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
     }, 300)
   }, [])
 
+  const getAsideInformationFields = useCallback(
+    (country: CountryModel) => {
+      return [
+        { label: 'Name', value: country?.name },
+        { label: 'Native Name', value: country?.nativeName },
+        { label: 'Capital', value: country?.capital },
+        { label: 'Currency', value: country?.currency },
+        { label: 'Language', value: country?.language },
+        { label: 'Start of Week', value: country?.startOfWeek },
+        { label: 'Population', value: `${country.population} ppl` },
+        { label: 'Area', value: `${country?.area} km²` },
+        { label: 'Continents', value: country?.continents?.join(', ') },
+        { label: 'Latitude and Longitude', value: country?.latlng?.join(', ') },
+        {
+          label: 'Borders',
+          value: (
+            <span className={Styles.countriesLinksWrapper}>
+              {country?.borders.map((ctry, index) => (
+                <a key={index} href={`/full/${ctry}`}>
+                  {ctry}
+                </a>
+              ))}
+            </span>
+          )
+        }
+      ]
+    },
+    [country]
+  )
+
   return (
     <div className={Styles.fullCountry}>
       {isLoading && <Loading />}
       <Accordion title={`Showing ${country?.name || ''} information`}>
-        <div className={Styles.fullCountryContainer}>
-          <img src={country?.flag} alt={country?.name} />
-          <div className={Styles.asideInformation}>
-            <h2>Republica Federativa do Brasil</h2>
-            <div className={Styles.informationWrapper}>
-              <p>
-                <b>Name: </b>
-                {country?.name}
-              </p>
-              <p>
-                <b>Capital: </b>
-                {country?.capital}
-              </p>
-              <p>
-                <b>Currency: </b>
-                {country?.currency}
-              </p>
-              <p>
-                <b>Language: </b>
-                {country?.language}
-              </p>
-              <p>
-                <b>Population: </b>
-                {country?.population} pep.
-              </p>
+        {country?.name
+          ? (
+          <div className={Styles.fullCountryContainer}>
+            <img src={country?.flag} alt={country?.name} />
+            <div className={Styles.asideInformation}>
+              <h2>{country?.officialName}</h2>
+              <div className={Styles.informationWrapper}>
+                {getAsideInformationFields(country).map((field) => (
+                  <p key={field.label}>
+                    <b>{field.label}: </b>
+                    {field.value}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+            )
+          : (
+          <NotFound />
+            )}
       </Accordion>
     </div>
   )

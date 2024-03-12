@@ -16,4 +16,5 @@ export type RemoteCountryModel = {
   area: number
   startOfWeek: string
   continents: string[]
+  borders: string[]
 }

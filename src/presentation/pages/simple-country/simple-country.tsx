@@ -57,22 +57,21 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
   return (
     <div className={Styles.simpleCountry}>
       {isLoading && <Loading />}
-      {country && (
-        <Accordion title={`Showing ${country.name} information`}>
-          <Table
-            headers={['Name', 'Capital', 'Currency', 'Language', 'Population']}
-            values={[
-              [
-                country.name,
-                country.capital,
-                country.currency,
-                country.language,
-                country.population
-              ]
-            ]}
-          />
-        </Accordion>
-      )}
+
+      <Accordion title={`Showing ${country?.name || ''} information`}>
+        <Table
+          headers={['Name', 'Capital', 'Currency', 'Language', 'Population']}
+          values={[
+            country && [
+              country.name,
+              country.capital,
+              country.currency,
+              country.language,
+              country.population
+            ]
+          ]}
+        />
+      </Accordion>
     </div>
   )
 }

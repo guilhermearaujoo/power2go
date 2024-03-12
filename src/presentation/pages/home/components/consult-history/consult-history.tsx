@@ -23,7 +23,7 @@ const ConsultHistory: React.FC = () => {
     })), [consultHistory])
 
   return (
-    <Accordion title="Histórico de consultas">
+    <Accordion title="Consult History">
       <Table
         headers={columns.map((column) => column.dispplayName)}
         values={datas()

@@ -8,15 +8,14 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ headers, values }) => {
-  return values.length === 0
+  return values?.length === 0 || values[0]?.[0] === undefined
     ? (
     <div className={Styles.emptyTable}>
-      <HiBan height={30} width={30} />
+      <HiBan />
       <span>Nenhum resultado encontrado</span>
     </div>
       )
-    : (
-    <table className={Styles.table}>
+    : <table className={Styles.table}>
       <thead>
         <tr>
           {headers.map((header, index) => (
@@ -27,24 +26,13 @@ const Table: React.FC<TableProps> = ({ headers, values }) => {
       <tbody>
         {values.map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {row.map((value, colIndex) =>
-            // colIndex === row.length - 1
-            //   ? (
-            //   <td key={colIndex}>
-            //     <a href={value} target="_blank" rel="noreferrer">
-            //       {value}
-            //     </a>
-            //   </td>
-            //     )
-            //   : (
+            {row?.map((value, colIndex) =>
                 <td key={colIndex}>{value}</td>
-              // )
             )}
           </tr>
         ))}
       </tbody>
     </table>
-      )
 }
 
 export default memo(Table)

@@ -41,7 +41,6 @@ const ConsultHistory: React.FC = () => {
   ): void => {
     setPage(value)
   }
-  console.log(datas().length % 5)
 
   return (
     <Accordion title="Consult History" aditionalClass={Styles.accordion} >

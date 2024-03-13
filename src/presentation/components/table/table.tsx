@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import Styles from './table-styles.scss'
 import { NotFound } from '@/presentation/components'
-interface TableProps {
+type TableProps = {
   headers: string[]
   values: any[][]
 }

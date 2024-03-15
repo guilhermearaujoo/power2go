@@ -1,0 +1,54 @@
+@import "../../styles/colors.scss";
+
+.toggle {
+  width: fit-content !important;
+
+  input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    opacity: 0;
+
+    &:checked + label:before {
+      background: $dark-blue;
+    }
+
+    &:checked + label:after {
+      left: 26px;
+    }
+  }
+
+  label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      left: 2px;
+      top: 2px;
+      background: $white;
+      box-sizing: border-box;
+      transition: 0.2s ease-in;
+    }
+
+    &:before {
+      content: "";
+      width: 48px;
+      height: 24px;
+      background: $dark-blue;
+      position: relative;
+      display: inline-block;
+      border-radius: 46px;
+      box-sizing: border-box;
+      transition: 0.2s ease-in;
+    }
+  }
+}

@@ -15,7 +15,8 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [country, setCountry] = React.useState<CountryModel>(null)
   const { pathname } = useLocation()
-  const { setConsultHistory, consultHistory, setNotification } = useContext(Context)
+  const { setConsultHistory, consultHistory, setNotification } =
+    useContext(Context)
 
   const addCountryToConsultHistory = (country: CountryModel): void => {
     if (!country) {
@@ -49,8 +50,8 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
             message: 'Country not found',
             severity: 'error'
           })
+          setIsLoading(false)
         })
-        .finally(() => setIsLoading(false))
     },
     [pathname]
   )
@@ -75,18 +76,7 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
         { label: 'Area', value: `${country?.area} km²` },
         { label: 'Continents', value: country?.continents?.join(', ') },
         { label: 'Latitude and Longitude', value: country?.latlng?.join(', ') },
-        {
-          label: 'Borders',
-          value: (
-            <span className={Styles.countriesLinksWrapper}>
-              {country?.borders?.map((ctry, index) => (
-                <a key={index} href={`/full/${ctry}`}>
-                  {ctry}
-                </a>
-              )) || 'No borders '}
-            </span>
-          )
-        }
+        { label: 'Borders', value: country?.borders.join(', ') }
       ]
     },
     [country]
@@ -99,7 +89,11 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
         {country?.name
           ? (
           <div className={Styles.fullCountryContainer}>
-            <img src={country?.flag} alt={country?.name} />
+            <img
+              src={country?.flag}
+              alt={country?.name}
+              onLoad={() => setIsLoading(false)}
+            />
             <div className={Styles.asideInformation}>
               <h2>{country?.officialName}</h2>
               <div className={Styles.informationWrapper}>

@@ -1,17 +1,16 @@
 import Styles from './search-country.scss'
-import { Input } from '@/presentation/components'
+import { Input, Toggle } from '@/presentation/components'
 
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const SearchCountry: React.FC = () => {
-  const [search, setSearch] = useState({ search: '' })
   const history = useHistory()
+  const [search, setSearch] = useState({ search: '', toggle: history.location.pathname.includes('full') })
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    event.currentTarget.reset()
-    history.push(`/${search.search}`)
+    history.push(`${search.toggle && search.search ? '/full/' : '/'}${search.search}`)
     history.go(0)
   }
 
@@ -23,6 +22,12 @@ const SearchCountry: React.FC = () => {
         state={search}
         setState={setSearch}
         placeholder="Search for a country"
+      />
+      <Toggle
+        name="toggle"
+        placeholder="Details ?"
+        state={search}
+        setState={setSearch}
       />
       <button type="submit">Search Country</button>
     </form>

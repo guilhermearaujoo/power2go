@@ -2,6 +2,16 @@
 
 .toggle {
   width: fit-content !important;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .placeholder {
+    font-weight: 700;
+    color: $label-color;
+  }
 
   input[type="checkbox"] {
     position: absolute;
@@ -43,7 +53,7 @@
       content: "";
       width: 48px;
       height: 24px;
-      background: $dark-blue;
+      background: $border-color;
       position: relative;
       display: inline-block;
       border-radius: 46px;

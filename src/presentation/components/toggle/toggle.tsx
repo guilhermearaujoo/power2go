@@ -15,6 +15,7 @@ const Toogle: React.FC<Props> = ({ state, setState, ...props }: Props) => {
 
   return (
     <div className={Styles.toggle}>
+      <span className={Styles.placeholder}>{props.placeholder}</span>
       <input
         {...props}
         ref={toggleRef}
@@ -25,7 +26,8 @@ const Toogle: React.FC<Props> = ({ state, setState, ...props }: Props) => {
         onClick={() => {
           setState({ ...state, [props.name]: !state[props.name] })
         }}
-      ></label>
+      >
+      </label>
     </div>
   )
 }

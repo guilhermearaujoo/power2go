@@ -32,6 +32,7 @@ const Notification: React.FC = () => {
       open={open}
       autoHideDuration={autoHideDuration}
       onClose={handleClose}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
       <Alert
         onClose={handleClose}

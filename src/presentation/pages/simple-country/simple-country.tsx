@@ -15,7 +15,7 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [country, setCountry] = React.useState<CountryModel>(null)
   const { pathname } = useLocation()
-  const { setConsultHistory, consultHistory } = useContext(Context)
+  const { setConsultHistory, consultHistory, setNotification } = useContext(Context)
 
   const addCountryToConsultHistory = (country: CountryModel): void => {
     if (!country) {
@@ -41,7 +41,12 @@ const SimpleCountry: React.FC<Props> = ({ loadCountry }: Props) => {
           setCountry(countryData)
           addCountryToConsultHistory(countryData)
         })
-        .catch(console.error)
+        .catch((_e) => {
+          setNotification({
+            message: 'Country not found',
+            severity: 'error'
+          })
+        })
         .finally(() => setIsLoading(false))
     },
     [pathname]

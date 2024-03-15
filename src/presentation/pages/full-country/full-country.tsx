@@ -15,7 +15,7 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [country, setCountry] = React.useState<CountryModel>(null)
   const { pathname } = useLocation()
-  const { setConsultHistory, consultHistory } = useContext(Context)
+  const { setConsultHistory, consultHistory, setNotification } = useContext(Context)
 
   const addCountryToConsultHistory = (country: CountryModel): void => {
     if (!country) {
@@ -44,7 +44,12 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
           setCountry(countryData)
           addCountryToConsultHistory(countryData)
         })
-        .catch(console.error)
+        .catch((_e) => {
+          setNotification({
+            message: 'Country not found',
+            severity: 'error'
+          })
+        })
         .finally(() => setIsLoading(false))
     },
     [pathname]
@@ -74,11 +79,11 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
           label: 'Borders',
           value: (
             <span className={Styles.countriesLinksWrapper}>
-              {country?.borders.map((ctry, index) => (
+              {country?.borders?.map((ctry, index) => (
                 <a key={index} href={`/full/${ctry}`}>
                   {ctry}
                 </a>
-              ))}
+              )) || 'No borders '}
             </span>
           )
         }

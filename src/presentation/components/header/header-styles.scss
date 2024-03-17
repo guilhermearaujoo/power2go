@@ -1,0 +1,25 @@
+@import '../../styles/colors.scss';
+
+.header {
+    width: 100%;
+    min-height: 91px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding-left: 10%;
+
+}
+
+.goBack {
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    color: $text-color;
+    text-decoration: none;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}

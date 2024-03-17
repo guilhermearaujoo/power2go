@@ -6,13 +6,14 @@ import {
   makeFullCountry
 } from '@/main/factories/pages'
 import ContextProvider from '@/main/factories/context/context'
-import { SearchCountry, Notification } from '@/presentation/components'
+import { SearchCountry, Notification, Header } from '@/presentation/components'
 
 const Router: React.FC = () => {
   return (
     <ContextProvider>
       <BrowserRouter>
         <Notification />
+        <Header />
         <SearchCountry />
         <Switch>
           <Route path="/full/:country" component={makeFullCountry} />

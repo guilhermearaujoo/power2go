@@ -13,4 +13,25 @@
     width: 50%;
   }
 
+  .options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchCountry {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    div {
+      width: 100%;
+    }
+
+    .options {
+      justify-content: center;
+    }
+  }
 }

@@ -6,11 +6,16 @@ import { useHistory } from 'react-router-dom'
 
 const SearchCountry: React.FC = () => {
   const history = useHistory()
-  const [search, setSearch] = useState({ search: '', toggle: history.location.pathname.includes('full') })
+  const [search, setSearch] = useState({
+    search: '',
+    toggle: history.location.pathname.includes('full')
+  })
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    history.push(`${search.toggle && search.search ? '/full/' : '/'}${search.search}`)
+    history.push(
+      `${search.toggle && search.search ? '/full/' : '/'}${search.search}`
+    )
     history.go(0)
   }
 
@@ -23,13 +28,15 @@ const SearchCountry: React.FC = () => {
         setState={setSearch}
         placeholder="Search for a country"
       />
-      <Toggle
-        name="toggle"
-        placeholder="Details"
-        state={search}
-        setState={setSearch}
-      />
-      <button type="submit">Search Country</button>
+      <div className={Styles.options}>
+        <Toggle
+          name="toggle"
+          placeholder="Details"
+          state={search}
+          setState={setSearch}
+        />
+        <button type="submit">Search Country</button>
+      </div>
     </form>
   )
 }

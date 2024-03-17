@@ -8,7 +8,7 @@
     "node": ">=16.0.0 <17.0.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack serve --port 8081",
     "prepare": "husky install",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"

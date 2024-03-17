@@ -1,25 +1,37 @@
-@import '../../styles/colors.scss';
+@import "../../styles/colors.scss";
 
 .header {
-    width: 100%;
-    min-height: 91px;
-    background-color: $white;
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    padding-left: 10%;
-
+  width: 100%;
+  min-height: 91px;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding-left: 10%;
 }
 
 .goBack {
-    display: flex;
-    align-items: flex-end;
-    cursor: pointer;
-    color: $text-color;
-    text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  color: $text-color;
+  text-decoration: none;
 
-    svg {
-        width: 20px;
-        height: 20px;
-    }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .goBack {
+    order: 2;
+  }
 }

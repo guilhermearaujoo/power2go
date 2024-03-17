@@ -7,3 +7,9 @@
   padding: 40px 10%;
   width: 100%;
 }
+
+@mixin hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}

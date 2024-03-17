@@ -1,4 +1,5 @@
 @import "../../styles/colors.scss";
+@import "../../styles/mixins.scss";
 
 .table {
     display: flex;
@@ -31,5 +32,49 @@
             background-color: $light-blue;
         }
     }
+}
 
+.responsiveTable {
+  @include hidden;
+}
+
+
+@media (max-width: 768px) {
+    .table {
+        @include hidden;
+    }
+
+    .responsiveTable {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        flex-direction: column;
+        width: 100%;
+
+        .responsiveRow {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            min-height: 150px;
+            padding: 10px 0;
+
+            .responsiveHeader {
+                font-weight: 700;
+            }
+
+            .responsiveCell {
+                display: flex;
+                justify-content: flex-start;
+                gap: 7px;
+                align-items: center;
+                width: 100%;
+                padding: 10px 20px;
+            }
+        }
+        .responsiveRow:nth-child(odd) {
+            background-color: $light-blue;
+        }
+    }
 }

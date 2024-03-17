@@ -19,7 +19,7 @@ const ConsultHistory: React.FC = () => {
     { id: 'link', dispplayName: 'Link' }
   ]
 
-  const datas = useCallback(
+  const consultHistoryAdapter = useCallback(
     () =>
       consultHistory()
         .map((consult: ConsultHistoryModel) => ({
@@ -46,10 +46,7 @@ const ConsultHistory: React.FC = () => {
     <Accordion title="Consult History" aditionalClass={Styles.accordion} >
       <Table
         headers={columns.map((column) => column.dispplayName)}
-        values={new Array(5).fill(0).map((_, index) => {
-          const consult = datas()[index + (page - 1) * 5]
-          return consult ? [consult.date, consult.country, consult.link] : []
-        })}
+        values={consultHistoryAdapter().slice((page - 1) * 5, page * 5).map((consult) => [consult.date, consult.country, consult.link])}
       />
 
       <div className={Styles.dowloadWrapper} title='Dowload CSV'>
@@ -57,7 +54,7 @@ const ConsultHistory: React.FC = () => {
           extension=".csv"
           filename={'consult-history_' + new Date().toLocaleDateString()}
           columns={columns}
-          datas={datas}
+          datas={consultHistoryAdapter}
           text="."
           className={Styles.dowloadButton}
         />
@@ -68,7 +65,7 @@ const ConsultHistory: React.FC = () => {
 
       <div className={Styles.pagination}>
         <Pagination
-          count={Math.ceil(datas().length / 5) || 1}
+          count={Math.ceil(consultHistoryAdapter().length / 5) || 1}
           page={page}
           onChange={handleChange}
         />

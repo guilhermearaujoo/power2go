@@ -76,7 +76,10 @@ const FullCountry: React.FC<Props> = ({ loadCountry }: Props) => {
         { label: 'Area', value: `${country?.area} km²` },
         { label: 'Continents', value: country?.continents?.join(', ') },
         { label: 'Latitude and Longitude', value: country?.latlng?.join(', ') },
-        { label: 'Borders', value: country?.borders.join(', ') }
+        {
+          label: 'Borders',
+          value: country?.borders?.join(', ') || 'No Borders'
+        }
       ]
     },
     [country]

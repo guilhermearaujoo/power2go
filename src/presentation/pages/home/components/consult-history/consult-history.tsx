@@ -14,9 +14,9 @@ const ConsultHistory: React.FC = () => {
   const [page, setPage] = React.useState(1)
 
   const columns = [
-    { id: 'date', dispplayName: 'Date' },
-    { id: 'country', dispplayName: 'Country' },
-    { id: 'link', dispplayName: 'Link' }
+    { id: 'date', displayName: 'Date' },
+    { id: 'country', displayName: 'Country' },
+    { id: 'link', displayName: 'Link' }
   ]
 
   const consultHistoryAdapter = useCallback(
@@ -25,11 +25,7 @@ const ConsultHistory: React.FC = () => {
         .map((consult: ConsultHistoryModel) => ({
           date: consult?.date,
           country: consult?.country,
-          link: (
-            <a href={consult.link} key={consult.country}>
-              {consult.link}
-            </a>
-          )
+          link: consult?.link
         }))
         .reverse(),
     [consultHistory]
@@ -43,13 +39,21 @@ const ConsultHistory: React.FC = () => {
   }
 
   return (
-    <Accordion title="Consult History" aditionalClass={Styles.accordion} >
+    <Accordion title="Consult History" aditionalClass={Styles.accordion}>
       <Table
-        headers={columns.map((column) => column.dispplayName)}
-        values={consultHistoryAdapter().slice((page - 1) * 5, page * 5).map((consult) => [consult.date, consult.country, consult.link])}
+        headers={columns.map((column) => column.displayName)}
+        values={consultHistoryAdapter()
+          .slice((page - 1) * 5, page * 5)
+          .map((consult) => [
+            consult?.date,
+            consult?.country,
+            <a href={consult?.link} key={consult?.country}>
+              {consult?.link}
+            </a>
+          ])}
       />
 
-      <div className={Styles.dowloadWrapper} title='Dowload CSV'>
+      <div className={Styles.dowloadWrapper} title="Dowload CSV">
         <CsvDownload
           extension=".csv"
           filename={'consult-history_' + new Date().toLocaleDateString()}

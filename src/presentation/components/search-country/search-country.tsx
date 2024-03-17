@@ -25,7 +25,7 @@ const SearchCountry: React.FC = () => {
       />
       <Toggle
         name="toggle"
-        placeholder="Details ?"
+        placeholder="Details"
         state={search}
         setState={setSearch}
       />

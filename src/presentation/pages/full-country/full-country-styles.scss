@@ -46,3 +46,14 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .fullCountryContainer {
+    flex-direction: column;
+    gap: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
